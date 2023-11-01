@@ -3,11 +3,13 @@
     <a v-for="n in navigator" :key="n">{{ n }}</a>
   </div>
 
-  <!-- <div v-for="(product, idx) in products" :key="idx">
+  <div v-for="(product, idx) in products" :key="idx">
     <h4>{{ product.name }}</h4>
     <p>{{ product.price }} 만원</p>
-  </div> -->
-  <div>
+    <button v-on:click="increase(idx)">허위매물신고</button>
+    <span>신고수: {{ product.count }}</span>
+  </div>
+  <!-- <div>
     <h4>{{ products[0].name }}</h4>
     <h4>{{ products[0].price }}</h4>
     <button v-on:click="increase">허위매물신고</button>
@@ -20,7 +22,7 @@
   <div>
     <h4>{{ products[2].name }}</h4>
     <h4>{{ products[2].price }}</h4>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -28,18 +30,18 @@ export default {
   name: "App",
   data() {
     return {
-      count: 0,
+      // count: 0,
       navigator: ["Home", "Shop", "About"],
       products: [
-        { name: "역삼동원룸", price: 60 },
-        { name: "천호동원룸", price: 70 },
-        { name: "마포구원룸", price: 50 },
+        { name: "역삼동원룸", price: 60, count: 0 },
+        { name: "천호동원룸", price: 70, count: 0 },
+        { name: "마포구원룸", price: 50, count: 0 },
       ],
     };
   },
   methods: {
-    increase() {
-      this.count++;
+    increase(idx) {
+      this.products[idx].count++;
     },
   },
   components: {},
