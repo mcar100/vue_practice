@@ -2,8 +2,10 @@
   <div class="black-bg" v-if="isModalOpen === true">
     <div class="white-bg">
       <button @click="isModalOpen = false" class="close-btn">x</button>
-      <h4>상세 페이지</h4>
-      <p>상세 페이지 내용</p>
+      <h4>{{ modal.title }}</h4>
+      <img :src="modal.image" class="modal-img" />
+      <p>{{ modal.price }}</p>
+      <p>{{ modal.content }}</p>
     </div>
   </div>
 
@@ -11,53 +13,32 @@
     <a v-for="n in navigator" :key="n">{{ n }}</a>
   </div>
 
-  <!-- <div v-for="(product, idx) in products" :key="idx">
-    <h4>{{ product.name }}</h4>
-    <p>{{ product.price }} 만원</p>
-    <button v-on:click="increase(idx)">허위매물신고</button>
-    <span> 신고수: {{ product.count }}</span>
-  </div> -->
-  <div>
-    <img src="./assets/room0.jpg" class="room-img" />
-    <h4 @click="isModalOpen = true">{{ products[0].name }}</h4>
-    <h4>{{ products[0].price }}</h4>
-    <button v-on:click="products[0].count++">허위매물신고</button>
-    <span>신고수: {{ products[0].count }}</span>
-  </div>
-  <div>
-    <img src="./assets/room1.jpg" class="room-img" />
-    <h4>{{ products[1].name }}</h4>
-    <h4>{{ products[1].price }}</h4>
-    <button v-on:click="products[1].count++">허위매물신고</button>
-    <span> 신고수: {{ products[1].count }}</span>
-  </div>
-  <div>
-    <img src="./assets/room2.jpg" class="room-img" />
-    <h4>{{ products[2].name }}</h4>
-    <h4>{{ products[2].price }}</h4>
-    <button v-on:click="products[2].count++">허위매물신고</button>
-    <span> 신고수: {{ products[2].count }}</span>
+  <div v-for="r in oneroom" :key="r.id">
+    <img :src="r.image" class="room-img" />
+    <h4 @click="openModal(r)">{{ r.title }}</h4>
+    <p>{{ r.price.toLocaleString() }}원</p>
   </div>
 </template>
 
 <script>
+import data from "./assets/room";
 export default {
   name: "App",
   data() {
     return {
-      // count: 0,
       isModalOpen: false,
+      modal: { title: "", image: "", price: 0, content: "" },
       navigator: ["Home", "Shop", "About"],
-      products: [
-        { name: "역삼동원룸", price: 60, count: 0, url: "./assets/room0.jpg" },
-        { name: "천호동원룸", price: 70, count: 0, url: "./assets/room1.jpg" },
-        { name: "마포구원룸", price: 50, count: 0, url: "./assets/room2.jpg" },
-      ],
+      oneroom: data,
     };
   },
   methods: {
-    increase(idx) {
-      this.products[idx].count++;
+    openModal(data) {
+      this.isModalOpen = true;
+      this.modal.title = data.title;
+      this.modal.image = data.image;
+      this.modal.price = data.price;
+      this.modal.content = data.content;
     },
   },
   components: {},
@@ -109,6 +90,10 @@ div {
 .room-img {
   width: 100%;
   margin-top: 20px;
+}
+
+.modal-img {
+  width: 300px;
 }
 
 .close-btn {
