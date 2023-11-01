@@ -10,7 +10,7 @@
   <div>
     <h4>{{ products[0].name }}</h4>
     <h4>{{ products[0].price }}</h4>
-    <button v-on:click="count++">허위매물신고</button>
+    <button v-on:click="increase">허위매물신고</button>
     <span>신고수: {{ count }}</span>
   </div>
   <div>
@@ -36,6 +36,11 @@ export default {
         { name: "마포구원룸", price: 50 },
       ],
     };
+  },
+  methods: {
+    increase() {
+      this.count++;
+    },
   },
   components: {},
 };
