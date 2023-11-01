@@ -1,6 +1,6 @@
 <template>
   <div class="menu">
-    <a v-for="작명 in 3" :key="작명">작명</a>
+    <a v-for="n in navigator" :key="n">{{ n }}</a>
   </div>
 
   <div>원룸샵</div>
