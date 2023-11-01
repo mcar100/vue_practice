@@ -1,4 +1,8 @@
 <template>
+  <div class="menu">
+    <a v-for="작명 in 3" :key="작명">작명</a>
+  </div>
+
   <div>원룸샵</div>
   <div>
     <h4>{{ products[0] }}</h4>
@@ -19,6 +23,7 @@ export default {
   name: "App",
   data() {
     return {
+      navigator: ["Home", "Shop", "About"],
       products: ["역삼동원룸", "천호동원룸", "마포구원룸"],
       prices: [60, 70, 50],
     };
