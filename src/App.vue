@@ -1,4 +1,11 @@
 <template>
+  <div class="black-bg" v-if="isModalOpen === true">
+    <div class="white-bg">
+      <h4>상세 페이지</h4>
+      <p>상세 페이지 내용</p>
+    </div>
+  </div>
+
   <div class="menu">
     <a v-for="n in navigator" :key="n">{{ n }}</a>
   </div>
@@ -11,7 +18,7 @@
   </div> -->
   <div>
     <img src="./assets/room0.jpg" class="room-img" />
-    <h4>{{ products[0].name }}</h4>
+    <h4 @click="isModalOpen = true">{{ products[0].name }}</h4>
     <h4>{{ products[0].price }}</h4>
     <button v-on:click="products[0].count++">허위매물신고</button>
     <span>신고수: {{ products[0].count }}</span>
@@ -38,6 +45,7 @@ export default {
   data() {
     return {
       // count: 0,
+      isModalOpen: false,
       navigator: ["Home", "Shop", "About"],
       products: [
         { name: "역삼동원룸", price: 60, count: 0, url: "./assets/room0.jpg" },
@@ -56,6 +64,28 @@ export default {
 </script>
 
 <style>
+body {
+  margin: 0;
+}
+div {
+  box-sizing: border-box;
+}
+
+.black-bg {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  padding: 20px;
+}
+
+.white-bg {
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
