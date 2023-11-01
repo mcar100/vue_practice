@@ -2,7 +2,7 @@
   <img alt="Vue logo" src="./assets/logo.png" />
   <div>
     원룸샵
-    <h4>xx 원룸</h4>
+    <h4 :style="스타일">xx 원룸</h4>
     <p>{{ price1 }} 만원</p>
   </div>
   <div>
@@ -18,6 +18,7 @@ export default {
     return {
       price1: 60,
       price2: 70,
+      스타일: "color: blue",
     };
   },
   components: {},
