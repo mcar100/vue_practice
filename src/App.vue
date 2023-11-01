@@ -1,6 +1,7 @@
 <template>
   <div class="black-bg" v-if="isModalOpen === true">
     <div class="white-bg">
+      <button @click="isModalOpen = false" class="close-btn">x</button>
       <h4>상세 페이지</h4>
       <p>상세 페이지 내용</p>
     </div>
@@ -108,5 +109,11 @@ div {
 .room-img {
   width: 100%;
   margin-top: 20px;
+}
+
+.close-btn {
+  border: none;
+  background: white;
+  cursor: pointer;
 }
 </style>
