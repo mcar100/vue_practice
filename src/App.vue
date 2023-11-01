@@ -3,18 +3,9 @@
     <a v-for="n in navigator" :key="n">{{ n }}</a>
   </div>
 
-  <div>원룸샵</div>
-  <div>
-    <h4>{{ products[0] }}</h4>
-    <p>{{ prices[0] }}만원</p>
-  </div>
-  <div>
-    <h4>{{ products[1] }}</h4>
-    <p>{{ prices[1] }}만원</p>
-  </div>
-  <div>
-    <h4>{{ products[2] }}</h4>
-    <p>{{ prices[2] }}만원</p>
+  <div v-for="(product, idx) in products" :key="idx">
+    <h4>{{ product.name }}</h4>
+    <p>{{ product.price }} 만원</p>
   </div>
 </template>
 
@@ -24,8 +15,11 @@ export default {
   data() {
     return {
       navigator: ["Home", "Shop", "About"],
-      products: ["역삼동원룸", "천호동원룸", "마포구원룸"],
-      prices: [60, 70, 50],
+      products: [
+        { name: "역삼동원룸", price: 60 },
+        { name: "천호동원룸", price: "70" },
+        { name: "마포구원룸", price: 50 },
+      ],
     };
   },
   components: {},
@@ -39,7 +33,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
 .menu {
