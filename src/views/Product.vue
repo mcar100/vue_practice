@@ -16,7 +16,7 @@ import ProductDetailModal from "@/components/layout/modal/ProductDetail.vue";
 import data from "../assets/room";
 
 export default {
-  name: "ProductList",
+  name: "ProductPage",
   components: {
     ProductDetailModal,
   },

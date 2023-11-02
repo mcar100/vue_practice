@@ -2,13 +2,12 @@
   <HeaderNav />
 
   <main id="main">
-    <ProductList />
+    <router-view></router-view>
   </main>
 </template>
 
 <script>
 import HeaderNav from "./components/layout/HeaderNav.vue";
-import ProductList from "./views/Product.vue";
 
 export default {
   name: "App",
@@ -17,7 +16,6 @@ export default {
   },
   components: {
     HeaderNav,
-    ProductList,
   },
 };
 </script>

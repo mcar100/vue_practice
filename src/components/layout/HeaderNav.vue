@@ -1,17 +1,14 @@
 <template>
   <div class="menu">
-    <a v-for="n in navigator" :key="n">{{ n }}</a>
+    <router-link to="/" class="custom-link">Home</router-link>
+    <router-link to="/about" class="custom-link">About</router-link>
+    <router-link to="/shop" class="custom-link">Shop</router-link>
   </div>
 </template>
 
 <script>
 export default {
   name: "HeaderNav",
-  data() {
-    return {
-      navigator: ["Home", "Shop", "About"],
-    };
-  },
 };
 </script>
 
@@ -22,8 +19,9 @@ export default {
   border-radius: 5px;
 }
 
-.menu a {
+.custom-link {
   color: white;
   padding: 10px;
+  cursor: pointer;
 }
 </style>
