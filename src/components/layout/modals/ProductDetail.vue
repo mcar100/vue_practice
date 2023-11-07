@@ -29,9 +29,10 @@ export default {
 .black-bg {
   width: 100%;
   height: 100%;
+  top: 0;
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
-  padding: 20px;
+  padding: 30px;
 }
 
 .white-bg {
@@ -39,6 +40,7 @@ export default {
   background: white;
   border-radius: 8px;
   padding: 20px;
+  margin-top: 40px;
 }
 
 .modal-img {

@@ -1,13 +1,14 @@
 <template>
-  <HeaderNav />
+  <Header />
 
-  <main id="main">
-    <router-view></router-view>
-  </main>
+  <router-view></router-view>
+
+  <Footer />
 </template>
 
 <script>
-import HeaderNav from "./components/layout/HeaderNav.vue";
+import Header from "./components/layout/HeaderNav.vue";
+import Footer from "./components/Footer.vue";
 
 export default {
   name: "App",
@@ -15,7 +16,8 @@ export default {
     return {};
   },
   components: {
-    HeaderNav,
+    Header,
+    Footer,
   },
 };
 </script>
