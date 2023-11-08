@@ -1,9 +1,13 @@
 <template>
-  <Header />
+  <div class="body-container">
+    <Header />
 
-  <router-view></router-view>
+    <main class="container">
+      <router-view></router-view>
+    </main>
 
-  <Footer />
+    <Footer />
+  </div>
 </template>
 
 <script>
@@ -22,19 +26,6 @@ export default {
 };
 </script>
 
-<style>
-body {
-  margin: 0;
-}
-div {
-  box-sizing: border-box;
-}
-
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<style lang="scss">
+// 스타일아 적용되라 얍!
 </style>

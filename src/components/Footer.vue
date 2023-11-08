@@ -1,7 +1,7 @@
 <template>
-  <div class="footer">
+  <footer class="container">
     <ScrollButton />
-  </div>
+  </footer>
 </template>
 <script>
 import ScrollButton from "./layout/buttons/ScrollButton.vue";
@@ -22,23 +22,4 @@ export default {
   },
 };
 </script>
-<style scoped>
-.footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 110px;
-  background: darkslateblue;
-  color: white;
-}
-
-.footer p {
-  margin-right: 5px;
-}
-
-.footer > button {
-  margin-left: auto;
-  margin-right: 15px;
-}
-</style>
+<style lang="scss"></style>

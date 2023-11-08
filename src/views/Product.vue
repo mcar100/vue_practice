@@ -45,10 +45,4 @@ export default {
   },
 };
 </script>
-
-<style>
-.room-img {
-  width: 100%;
-  margin-top: 20px;
-}
-</style>
+<style lang="scss"></style>

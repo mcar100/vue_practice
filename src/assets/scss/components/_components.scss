@@ -1,0 +1,21 @@
+@use "../abstracts/variables" as c;
+@use "../abstracts/mixins" as mix;
+
+// buttons
+.move-top-btn {
+  @include mix.box-style(40px, 40px, c.$white);
+  @include mix.font-style(13px, $fc: c.$background);
+  border: none;
+  border-radius: 100%;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 90%;
+  }
+}
+
+// images
+.room-img {
+  width: 100%;
+  margin-top: 20px;
+}

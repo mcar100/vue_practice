@@ -8,3 +8,4 @@ export default {
   name: "ToDoListPage",
 };
 </script>
+<style lang="scss"></style>

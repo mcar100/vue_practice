@@ -1,10 +1,14 @@
 <template>
-  <div class="menu">
-    <router-link to="/" class="custom-link">Home</router-link>
-    <router-link to="/about" class="custom-link">About</router-link>
-    <router-link to="/shop" class="custom-link">Shop</router-link>
-    <router-link to="/todolist" class="custom-link">ToDoList</router-link>
-  </div>
+  <header class="container">
+    <nav class="header-navbar">
+      <ul class="nav-menu">
+        <router-link to="/" class="nav-item">Home</router-link>
+        <router-link to="/about" class="nav-item">About</router-link>
+        <router-link to="/shop" class="nav-item">Shop</router-link>
+        <router-link to="/todolist" class="nav-item">ToDoList</router-link>
+      </ul>
+    </nav>
+  </header>
 </template>
 
 <script>
@@ -13,16 +17,4 @@ export default {
 };
 </script>
 
-<style>
-.menu {
-  background: darkslateblue;
-  padding: 15px;
-  border-radius: 5px;
-}
-
-.custom-link {
-  color: white;
-  padding: 10px;
-  cursor: pointer;
-}
-</style>
+<style lang="scss"></style>

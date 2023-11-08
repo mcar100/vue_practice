@@ -24,8 +24,9 @@ export default {
   },
 };
 </script>
+<style lang="scss"></style>
 
-<style>
+<!-- <style>
 .black-bg {
   width: 100%;
   height: 100%;
@@ -52,4 +53,4 @@ export default {
   background: white;
   cursor: pointer;
 }
-</style>
+</style> -->

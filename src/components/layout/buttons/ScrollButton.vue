@@ -15,18 +15,4 @@ export default {
   },
 };
 </script>
-<style scoped>
-.move-top-btn {
-  width: 40px;
-  height: 40px;
-  background: white;
-  color: darkslateblue;
-  border: none;
-  border-radius: 100%;
-  cursor: pointer;
-}
-
-.move-top-btn:hover {
-  opacity: 90%;
-}
-</style>
+<style lang="scss"></style>
