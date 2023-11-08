@@ -27,5 +27,5 @@ export default {
 </script>
 
 <style lang="scss">
-// 스타일아 적용되라 얍!
+// scss 적용
 </style>
