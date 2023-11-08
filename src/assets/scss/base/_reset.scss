@@ -120,4 +120,11 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
 }

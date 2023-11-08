@@ -4,7 +4,7 @@
     :closeModal="closeModal"
     v-if="isModalOpen === true"
   />
-  <div v-for="r in oneroom" :key="r.id">
+  <div class="item-container" v-for="r in oneroom" :key="r.id">
     <img :src="r.image" class="room-img" />
     <h4 @click="openModal(r)">{{ r.title }}</h4>
     <p>{{ r.price.toLocaleString() }}원</p>

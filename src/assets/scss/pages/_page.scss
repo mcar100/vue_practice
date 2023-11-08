@@ -4,13 +4,14 @@
 .body-container {
   @include mix.gridbox(
     $a: ". header ." ". body ." ". footer .",
-    $gtr: 10% 80% 10%,
+    $gtr: 10% auto 10%,
     $gtc: 0 100% 0
   );
   @include mix.box-style($w: 100%, $h: 100vh);
 
   header {
     grid-area: header;
+    height: 100%;
 
     .nav-menu {
       @include mix.box-style(100%, 50px, c.$background);
@@ -26,14 +27,17 @@
 
   main {
     grid-area: body;
+    height: 100%;
+    margin: 15px 0;
   }
 
   footer {
     grid-area: footer;
+    height: 100%;
   }
 
   .container {
-    height: 100%;
+    max-height: 100%;
     @include mix.flexbox($d: column, $jc: center, $ai: center);
     background-color: c.$background;
     color: c.$black;
