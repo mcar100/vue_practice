@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Header from "./components/layout/HeaderNav.vue";
+import Header from "./components/HeaderNav.vue";
 import Footer from "./components/Footer.vue";
 
 export default {

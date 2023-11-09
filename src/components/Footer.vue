@@ -4,7 +4,7 @@
   </footer>
 </template>
 <script>
-import ScrollButton from "./layout/buttons/ScrollButton.vue";
+import ScrollButton from "./buttons/ScrollButton.vue";
 export default {
   name: "FooterNav",
 
