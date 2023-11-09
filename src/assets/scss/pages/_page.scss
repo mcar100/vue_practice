@@ -1,6 +1,7 @@
 @use "../abstracts/variables" as c;
 @use "../abstracts/mixins" as mix;
 
+/* 전체 레이아웃 틀 */
 .body-container {
   @include mix.gridbox(
     $a: ". header ." ". body ." ". footer .",
@@ -28,7 +29,6 @@
   main {
     grid-area: body;
     height: 100%;
-    margin: 15px 0;
   }
 
   footer {

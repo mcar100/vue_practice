@@ -1,0 +1,182 @@
+@use "../abstracts/variables" as c;
+@use "../abstracts/mixins" as mix;
+
+.line-container {
+  position: relative;
+  @include mix.box-style(50px, 50px);
+  .nail {
+    @include mix.position($l: 50%);
+    transform: translate(-50%, 0);
+    @include mix.box-style(20px, 20px, c.$black);
+    @include mix.border(5px, $c: c.$dark-line, $r: 100%);
+    z-index: 3;
+  }
+  .line {
+    @include mix.box-style(5px, 100%, c.$bright-line);
+    z-index: 1;
+
+    &:nth-child(2) {
+      @include mix.position($t: 3px, $l: 35px);
+      transform: skew(30deg);
+    }
+
+    &:nth-child(3) {
+      @include mix.position($t: 3px, $l: 10px);
+      transform: skew(-30deg);
+    }
+  }
+}
+
+.board-container {
+  @include mix.flexbox(column);
+  @include mix.box-style(600px, 400px, c.$bright-wood);
+  @include mix.border(12px, groove, c.$dark-wood);
+  z-index: 2;
+
+  .memo-container {
+    @include mix.box-style(98%, 98%, c.$bright-wood);
+    @include mix.gridbox($gtr: 50% 50%, $gtc: 25% 25% 25% 25%, $g: 5px);
+
+    // @include mix.respond-to("small") {
+    //   @include mix.box-style(380px, 280px);
+    //   @include mix.gridbox($gtr: 50% 50%, $gtc: 25% 25% 25% 25%, $g: 3px);
+    // }
+  }
+
+  // @include mix.respond-to("small") {
+  //   @include mix.box-style(400px, 300px);
+  // }
+}
+
+.memo {
+  @include mix.box-style(80px, 90px, c.$paper);
+  @include mix.grid-self();
+
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  transform: rotate(0deg) scale(1.25);
+
+  .memo-head {
+    @include mix.flexbox();
+    @include mix.box-style(100%, 10%);
+    @include mix.parent-color();
+
+    .memo-pin {
+      @include mix.box-style(15px, 15px, c.$bright-line);
+      @include mix.border(3px, $c: c.$bright-line, $r: 100%);
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+      &:hover {
+        transform: rotate(0deg) scale(1.25);
+      }
+    }
+  }
+
+  .memo-body {
+    @include mix.box-style(100%, 90%);
+    @include mix.padding($t: 18px);
+    @include mix.parent-color();
+
+    & > textarea {
+      @include mix.box-style(95%, 95%);
+      @include mix.font-style(10px, bold);
+      @include mix.parent-color();
+      text-align: center;
+      vertical-align: middle;
+      border: none;
+      resize: none;
+      overflow: hidden;
+      cursor: pointer;
+
+      // @include mix.respond-to("small") {
+      //   @include mix.box-size(93%, 93%);
+      // }
+    }
+
+    & > textarea:focus {
+      outline: none;
+    }
+  }
+
+  // @include mix.respond-to("small") {
+  //   @include mix.box-size(60px, 70px);
+  // }
+}
+
+.memo--clear {
+  text-decoration-line: line-through;
+}
+
+// memo style
+.memo-type1 {
+  @include mix.box-color(c.$paper);
+
+  .memo-head > .memo-pin {
+    @include mix.box-color(c.$pin, c.$pin);
+  }
+}
+
+.memo-type2 {
+  @include mix.box-color(c.$paper2);
+  .memo-head > .memo-pin {
+    @include mix.box-color(c.$pin2, c.$pin2);
+  }
+}
+
+.memo-type3 {
+  @include mix.box-color(c.$paper3);
+  .memo-head > .memo-pin {
+    @include mix.box-color(c.$pin3, c.$pin3);
+  }
+}
+
+.memo-type4 {
+  @include mix.box-color(c.$paper4);
+  .memo-head > .memo-pin {
+    @include mix.box-color(c.$pin4, c.$pin4);
+  }
+}
+
+.memo-type5 {
+  @include mix.box-color(c.$paper5);
+  .memo-head > .memo-pin {
+    @include mix.box-color(c.$pin5, c.$pin5);
+  }
+}
+
+.memo-type6 {
+  @include mix.box-color(c.$paper6);
+  .memo-head > .memo-pin {
+    @include mix.box-color(c.$pin6, c.$pin6);
+  }
+}
+
+.input-container {
+  @include mix.flexbox();
+  @include mix.box-style(600px, 20%);
+  & > input {
+    @include mix.box-style(400px, 50px);
+    @include mix.box-color(c.$bright-wood, c.$black);
+    @include mix.font-style(15px, $fc: c.$dark-line);
+    @include mix.border($c: c.$dark-wood);
+    @include mix.border-radius($tl: 3px, $bl: 3px);
+    text-align: center;
+
+    // @include mix.respond-to("small") {
+    //   @include mix.font-style(12px, $fc: c.$dark-line);
+    // }
+  }
+  & > button {
+    @include mix.box-style(80px, 50px, c.$background);
+    @include mix.border($c: c.$background);
+    @include mix.border-radius($tr: 3px, $br: 3px);
+    @include mix.font-style(13px, $fc: c.$white);
+
+    &:hover {
+      opacity: 80%;
+    }
+  }
+
+  // @include mix.respond-to("small") {
+  //   @include mix.box-size(300px, 300px);
+  // }
+}

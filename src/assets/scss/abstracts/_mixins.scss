@@ -35,6 +35,17 @@
   background-color: $bgc;
 }
 
+@mixin box-color($bgc: #303030, $rc: #fff) {
+  background-color: $bgc;
+  border-color: $rc;
+}
+
+@mixin parent-color() {
+  background-color: inherit;
+  border-color: inherit;
+  color: inherit;
+}
+
 @mixin font-style($fs: 10px, $fw: bold, $fc: c.$black) {
   font-size: $fs;
   font-weight: $fw;
@@ -52,6 +63,14 @@
   border-top-right-radius: $tr;
   border-bottom-left-radius: $bl;
   border-bottom-right-radius: $br;
+}
+
+@mixin border-partial($t: 0px, $r: 0px, $b: 0px, $l: 0px) {
+  border-style: solid;
+  border-top: $t;
+  border-right: $r;
+  border-bottom: $b;
+  border-left: $l;
 }
 
 // /* flex */
