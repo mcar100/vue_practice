@@ -20,12 +20,13 @@
   </div>
 </template>
 <script>
-import { checkInputData, setInputData } from "@/utils/input";
+import { checkInputData } from "@/utils/input";
+import { createMemoData, addMemoData } from "@/utils/memo";
 
 export default {
   name: "InputContainer",
   props: {
-    createMemo: Function,
+    memoList: Array,
   },
   data() {
     return {
@@ -43,11 +44,11 @@ export default {
     handleSubmit(event) {
       event.preventDefault();
       try {
-        const data = setInputData(this.input, this.date);
-        checkInputData(data);
+        checkInputData(this.input, this.date);
+        const memoData = createMemoData(this.input, this.date);
         this.input = "";
         this.date = "";
-        this.createMemo(data);
+        addMemoData(this.memoList, memoData);
       } catch (error) {
         console.log(error.message);
       }

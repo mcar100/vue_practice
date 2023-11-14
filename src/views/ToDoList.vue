@@ -6,10 +6,10 @@
   </div>
   <div class="board-container">
     <div class="memo-container">
-      <MemoItem />
+      <MemoItem v-for="(memo, idx) in memoList" :key="idx" :data="memo" />
     </div>
   </div>
-  <InputContainer :createMemo="createMemo" />
+  <InputContainer :memoList="memoList" />
 </template>
 <script>
 import MemoItem from "@/components/todolist/Memo";
@@ -26,9 +26,10 @@ export default {
   data() {
     return {
       state: {
-        memoList: [],
+        memoPosition: [],
         currentMode: MODE_NORMAL,
       },
+      memoList: [],
     };
   },
   methods: {
