@@ -1,21 +1,21 @@
 import { MEMO_MAXLENGTH } from "@/utils/constants";
 
-export function addMemoData(list, data) {
-  if (list.length === MEMO_MAXLENGTH) {
+export function addMemoData(state, data) {
+  if (state.memoList.length === MEMO_MAXLENGTH) {
     throw new Error("메모가 꽉찼습니다.");
   } else {
-    list.push(data);
+    state.memoList.push(data);
   }
 }
 
-export function createMemo(memoList, data) {
-  try {
-    addMemoData(memoList, data);
-    console.log(memoList);
-  } catch (error) {
-    console.log(error.message);
-  }
-}
+// export function createMemo(memoList, data) {
+//   try {
+//     addMemoData(memoList, data);
+//     console.log(memoList);
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// }
 
 export function removeMemo() {}
 

@@ -20,7 +20,7 @@
   </div>
 </template>
 <script>
-import { setInputData } from "@/utils/input";
+import { checkInputData, setInputData } from "@/utils/input";
 
 export default {
   name: "InputContainer",
@@ -42,8 +42,15 @@ export default {
     },
     handleSubmit(event) {
       event.preventDefault();
-      const data = setInputData(this.input, this.date);
-      this.createMemo(data);
+      try {
+        const data = setInputData(this.input, this.date);
+        checkInputData(data);
+        this.input = "";
+        this.date = "";
+        this.createMemo(data);
+      } catch (error) {
+        console.log(error.message);
+      }
     },
   },
 };

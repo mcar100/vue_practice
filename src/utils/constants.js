@@ -1,7 +1,7 @@
 // memo mode: normal, creating, moving
-const MODE_NORMAL = 0;
-const MODE_CREATING = 1;
-const MODE_MOVING = 2;
+const MODE_NORMAL = 1;
+const MODE_CREATING = 2;
+const MODE_MOVING = 3;
 
 // memo max length;
 const MEMO_MAXLENGTH = 8;
