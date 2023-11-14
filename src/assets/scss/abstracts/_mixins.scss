@@ -129,3 +129,8 @@
   justify-self: $js;
   align-self: $as;
 }
+
+@mixin grid-position($gr: 1, $gc: 1) {
+  grid-row: $gr;
+  grid-column: $gc;
+}

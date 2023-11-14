@@ -8,7 +8,6 @@ export function checkInputData(input, date) {
 
 export function changeDateForm(date) {
   const oldForm = new Date(date);
-  console.log(oldForm);
   const yy = oldForm.getFullYear() % 100;
   const mm = String(oldForm.getMonth() + 1).padStart(2, "0");
   const dd = String(oldForm.getDate()).padStart(2, "0");

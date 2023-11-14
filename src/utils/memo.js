@@ -27,8 +27,14 @@ export function removeMemoData(state, memoList, memoIdx) {
   if (state.memoPositionList[memoIdx] === 0) {
     throw new Error("이미 비어있는 위치입니다.");
   } else {
+    // clear memoPositionList
     state.memoPositionList[memoIdx] = 0;
-    memoList.splice(memoIdx, 1);
+
+    // find memoList index and remove
+    const memoListIndex = memoList.findIndex(
+      (memo) => memo.position === memoIdx
+    );
+    memoList.splice(memoListIndex, 1);
   }
 }
 

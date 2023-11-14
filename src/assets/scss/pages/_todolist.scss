@@ -48,6 +48,7 @@
   // }
 }
 
+// memo common style
 .memo {
   @include mix.box-style(80px, 90px, c.$paper);
   @include mix.grid-self();
@@ -111,7 +112,7 @@
   text-decoration-line: line-through;
 }
 
-// memo style
+// memo decorate style
 .memo-type1 {
   @include mix.box-color(c.$paper);
 
@@ -155,6 +156,40 @@
   }
 }
 
+// grid position
+.grid-pos0 {
+  @include mix.grid-position();
+}
+
+.grid-pos1 {
+  @include mix.grid-position(1, 2);
+}
+
+.grid-pos2 {
+  @include mix.grid-position(1, 3);
+}
+
+.grid-pos3 {
+  @include mix.grid-position(1, 4);
+}
+
+.grid-pos4 {
+  @include mix.grid-position(2, 1);
+}
+
+.grid-pos5 {
+  @include mix.grid-position(2, 2);
+}
+
+.grid-pos6 {
+  @include mix.grid-position(2, 3);
+}
+
+.grid-pos7 {
+  @include mix.grid-position(2, 4);
+}
+
+// input style
 .input-container {
   @include mix.flexbox();
   @include mix.box-style(600px, 20%);

@@ -3,7 +3,7 @@
     class="memo"
     v-for="memo in memoList"
     :key="memo.position"
-    :class="memo.style"
+    :class="['grid-pos' + memo.position, memo.style]"
   >
     <div class="memo-head">
       <div class="memo-pin" @click="pinClickHandler(memo.position)"></div>
@@ -20,7 +20,7 @@ export default {
   props: {
     memoList: Array,
   },
-  emits: ["removeMemo"],
+  emits: ["remove-memo"],
   methods: {
     pinClickHandler(itemPosition) {
       if (itemPosition !== undefined) {
