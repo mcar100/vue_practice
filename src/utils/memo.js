@@ -19,6 +19,7 @@ export function createMemoData(input, date) {
     contents: input,
     date: date,
     style: style,
+    clear: false,
   };
   return memoData;
 }
@@ -35,6 +36,15 @@ export function removeMemoData(state, memoList, memoIdx) {
       (memo) => memo.position === memoIdx
     );
     memoList.splice(memoListIndex, 1);
+  }
+}
+
+export function checkMemoClear(memoList, memoIdx) {
+  console.log(memoList[memoIdx]);
+  if (memoList[memoIdx].clear) {
+    memoList[memoIdx].clear = false;
+  } else {
+    memoList[memoIdx].clear = true;
   }
 }
 

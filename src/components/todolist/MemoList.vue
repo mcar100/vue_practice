@@ -10,7 +10,12 @@
     </div>
     <div class="memo-body">
       <span class="memo-date">{{ `due: ${memo.date}` }}</span>
-      <textarea readonly :value="memo.contents"></textarea>
+      <textarea
+        readonly
+        :value="memo.contents"
+        @click="textareaClickHandler(memo.position)"
+        :class="{ 'memo--clear': memo.clear }"
+      ></textarea>
     </div>
   </div>
 </template>
@@ -20,11 +25,16 @@ export default {
   props: {
     memoList: Array,
   },
-  emits: ["remove-memo"],
+  emits: ["remove-memo", "clear-memo"],
   methods: {
-    pinClickHandler(itemPosition) {
-      if (itemPosition !== undefined) {
-        this.$emit("remove-memo", itemPosition);
+    pinClickHandler(memoPosition) {
+      if (memoPosition !== undefined) {
+        this.$emit("remove-memo", memoPosition);
+      }
+    },
+    textareaClickHandler(memoPosition) {
+      if (memoPosition !== undefined) {
+        this.$emit("clear-memo", memoPosition);
       }
     },
   },

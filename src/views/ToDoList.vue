@@ -6,7 +6,11 @@
   </div>
   <div class="board-container">
     <div class="memo-container">
-      <MemoList :memoList="memoList" @remove-memo="removeMemo" />
+      <MemoList
+        :memoList="memoList"
+        @remove-memo="removeMemo"
+        @clear-memo="clearMemo"
+      />
     </div>
   </div>
   <InputContainer @add-memo="addMemo" />
@@ -14,9 +18,14 @@
 <script>
 import MemoList from "@/components/todolist/MemoList";
 import InputContainer from "@/components/todolist/Input";
-import { MODE_NORMAL, MODE_CREATING } from "@/utils/constants";
-import { addMemoData, removeMemoData, setMemoPosition } from "@/utils/memo";
-import { checkAndChangeMode } from "@/utils/mode";
+import { MODE_NORMAL } from "@/utils/constants";
+import {
+  addMemoData,
+  removeMemoData,
+  checkMemoClear,
+  setMemoPosition,
+} from "@/utils/memo";
+// import { checkAndChangeMode } from "@/utils/mode";
 export default {
   name: "ToDoListPage",
   components: {
@@ -33,15 +42,6 @@ export default {
     };
   },
   methods: {
-    createMemo(data) {
-      try {
-        addMemoData(this.state, data);
-        checkAndChangeMode(this.state, MODE_CREATING);
-        console.log(this.memo);
-      } catch (error) {
-        console.log(error.message);
-      }
-    },
     addMemo(memoData) {
       try {
         const position = setMemoPosition(this.state);
@@ -53,6 +53,13 @@ export default {
     removeMemo(memoIdx) {
       try {
         removeMemoData(this.state, this.memoList, memoIdx);
+      } catch (error) {
+        console.log(error.message);
+      }
+    },
+    clearMemo(memoIdx) {
+      try {
+        checkMemoClear(this.memoList, memoIdx);
       } catch (error) {
         console.log(error.message);
       }
