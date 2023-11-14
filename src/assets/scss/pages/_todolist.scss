@@ -153,7 +153,7 @@
 .input-container {
   @include mix.flexbox();
   @include mix.box-style(600px, 20%);
-  & > input {
+  & > form > input {
     @include mix.box-style(400px, 50px);
     @include mix.box-color(c.$bright-wood, c.$black);
     @include mix.font-style(15px, $fc: c.$dark-line);
@@ -165,7 +165,7 @@
     //   @include mix.font-style(12px, $fc: c.$dark-line);
     // }
   }
-  & > button {
+  & > form > button {
     @include mix.box-style(80px, 50px, c.$background);
     @include mix.border($c: c.$background);
     @include mix.border-radius($tr: 3px, $br: 3px);

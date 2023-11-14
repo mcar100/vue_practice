@@ -9,21 +9,36 @@
       <MemoItem />
     </div>
   </div>
-  <div class="input-container">
-    <input
-      type="text"
-      maxlength="30"
-      placeholder="해야 할 일을 입력해주세요 (30자 이내)"
-    />
-    <button type="submit">등록</button>
-  </div>
+  <InputContainer :createMemo="createMemo" />
 </template>
 <script>
-import MemoItem from "@/components/layout/contents/Memo.vue";
+import MemoItem from "@/components/todolist/Memo";
+import InputContainer from "@/components/todolist/Input";
+import { MODE_NORMAL, MODE_CREATING, MODE_MOVING } from "@/utils/constants";
+import { addMemoData } from "@/utils/memo";
 export default {
   name: "ToDoListPage",
   components: {
     MemoItem,
+    InputContainer,
+  },
+  data() {
+    return {
+      memoList: [],
+      mode0: MODE_NORMAL,
+      mode1: MODE_CREATING,
+      mode2: MODE_MOVING,
+    };
+  },
+  methods: {
+    createMemo(data) {
+      try {
+        addMemoData(this.memoList, data);
+        console.log(this.memoList);
+      } catch (error) {
+        console.log(error.message);
+      }
+    },
   },
 };
 </script>
