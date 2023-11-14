@@ -45,7 +45,7 @@ export default {
         const memoData = createMemoData(this.input, this.date);
         this.input = "";
         this.date = "";
-        this.$emit("add-to-memoList", memoData);
+        this.$emit("add-memo", memoData);
       } catch (error) {
         console.log(error.message);
       }

@@ -6,16 +6,16 @@
   </div>
   <div class="board-container">
     <div class="memo-container">
-      <MemoList :memoList="memoList" />
+      <MemoList :memoList="memoList" @remove-memo="removeMemo" />
     </div>
   </div>
-  <InputContainer @add-to-memoList="addMemo" />
+  <InputContainer @add-memo="addMemo" />
 </template>
 <script>
 import MemoList from "@/components/todolist/MemoList";
 import InputContainer from "@/components/todolist/Input";
 import { MODE_NORMAL, MODE_CREATING } from "@/utils/constants";
-import { addMemoData } from "@/utils/memo";
+import { addMemoData, removeMemoData, setMemoPosition } from "@/utils/memo";
 import { checkAndChangeMode } from "@/utils/mode";
 export default {
   name: "ToDoListPage",
@@ -26,7 +26,7 @@ export default {
   data() {
     return {
       state: {
-        memoPosition: [],
+        memoPositionList: new Array(8).fill(0),
         currentMode: MODE_NORMAL,
       },
       memoList: [],
@@ -43,8 +43,19 @@ export default {
       }
     },
     addMemo(memoData) {
-      addMemoData(this.memoList, memoData);
-      console.log(this.memoList);
+      try {
+        const position = setMemoPosition(this.state);
+        addMemoData(this.memoList, memoData, position);
+      } catch (error) {
+        console.log(error.message);
+      }
+    },
+    removeMemo(memoIdx) {
+      try {
+        removeMemoData(this.state, this.memoList, memoIdx);
+      } catch (error) {
+        console.log(error.message);
+      }
     },
   },
 };
