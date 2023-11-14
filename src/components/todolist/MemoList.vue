@@ -9,6 +9,7 @@
       <div class="memo-pin" @click="pinClickHandler(memo.position)"></div>
     </div>
     <div class="memo-body">
+      <span class="memo-date">{{ `due: ${memo.date}` }}</span>
       <textarea readonly :value="memo.contents"></textarea>
     </div>
   </div>
@@ -20,9 +21,6 @@ export default {
     memoList: Array,
   },
   emits: ["removeMemo"],
-  mounted() {
-    console.log("MemoItem props:", this.memoList);
-  },
   methods: {
     pinClickHandler(itemPosition) {
       if (itemPosition !== undefined) {

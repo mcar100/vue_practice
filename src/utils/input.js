@@ -5,3 +5,13 @@ export function checkInputData(input, date) {
     throw new Error("날짜를 입력해주세요.");
   }
 }
+
+export function changeDateForm(date) {
+  const oldForm = new Date(date);
+  console.log(oldForm);
+  const yy = oldForm.getFullYear() % 100;
+  const mm = String(oldForm.getMonth() + 1).padStart(2, "0");
+  const dd = String(oldForm.getDate()).padStart(2, "0");
+
+  return `${yy}.${mm}.${dd}`;
+}

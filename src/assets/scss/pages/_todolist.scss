@@ -73,11 +73,16 @@
 
   .memo-body {
     @include mix.box-style(100%, 90%);
-    @include mix.padding($t: 18px);
+    @include mix.padding($t: 10px);
     @include mix.parent-color();
+    text-align: center;
+
+    & > span {
+      @include mix.font-style(8px, bold);
+    }
 
     & > textarea {
-      @include mix.box-style(95%, 95%);
+      @include mix.box-style(95%, 60%);
       @include mix.font-style(10px, bold);
       @include mix.parent-color();
       text-align: center;
