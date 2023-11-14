@@ -9,10 +9,14 @@ export function addMemoData(memoList, data) {
 }
 
 export function createMemoData(input, date) {
+  // memo-style
+  const randNum = Math.floor(Math.random() * 6) + 1;
+  const style = `memo-type${randNum}`;
+  // memoData
   const memoData = {
     contents: input,
     date: date,
-    style: "",
+    style: style,
   };
   return memoData;
 }

@@ -21,13 +21,10 @@
 </template>
 <script>
 import { checkInputData } from "@/utils/input";
-import { createMemoData, addMemoData } from "@/utils/memo";
+import { createMemoData } from "@/utils/memo";
 
 export default {
   name: "InputContainer",
-  props: {
-    memoList: Array,
-  },
   data() {
     return {
       input: "",
@@ -48,7 +45,7 @@ export default {
         const memoData = createMemoData(this.input, this.date);
         this.input = "";
         this.date = "";
-        addMemoData(this.memoList, memoData);
+        this.$emit("add-to-memoList", memoData);
       } catch (error) {
         console.log(error.message);
       }

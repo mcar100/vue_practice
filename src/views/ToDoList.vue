@@ -6,13 +6,13 @@
   </div>
   <div class="board-container">
     <div class="memo-container">
-      <MemoItem v-for="(memo, idx) in memoList" :key="idx" :data="memo" />
+      <MemoList :memoList="memoList" />
     </div>
   </div>
-  <InputContainer :memoList="memoList" />
+  <InputContainer @add-to-memoList="addMemo" />
 </template>
 <script>
-import MemoItem from "@/components/todolist/Memo";
+import MemoList from "@/components/todolist/MemoList";
 import InputContainer from "@/components/todolist/Input";
 import { MODE_NORMAL, MODE_CREATING } from "@/utils/constants";
 import { addMemoData } from "@/utils/memo";
@@ -20,7 +20,7 @@ import { checkAndChangeMode } from "@/utils/mode";
 export default {
   name: "ToDoListPage",
   components: {
-    MemoItem,
+    MemoList,
     InputContainer,
   },
   data() {
@@ -37,10 +37,14 @@ export default {
       try {
         addMemoData(this.state, data);
         checkAndChangeMode(this.state, MODE_CREATING);
-        console.log(this.state);
+        console.log(this.memo);
       } catch (error) {
         console.log(error.message);
       }
+    },
+    addMemo(memoData) {
+      addMemoData(this.memoList, memoData);
+      console.log(this.memoList);
     },
   },
 };
