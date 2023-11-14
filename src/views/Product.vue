@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import ProductDetailModal from "@/components/modals/ProductDetail.vue";
+import ProductDetailModal from "@/components/modals/ProductDetail";
 import data from "../assets/room";
 
 export default {
