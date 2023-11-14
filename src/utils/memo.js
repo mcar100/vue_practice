@@ -39,8 +39,7 @@ export function removeMemoData(state, memoList, memoIdx) {
   }
 }
 
-export function checkMemoClear(memoList, memoIdx) {
-  console.log(memoList[memoIdx]);
+export function checkAndChangeMemoClear(memoList, memoIdx) {
   if (memoList[memoIdx].clear) {
     memoList[memoIdx].clear = false;
   } else {

@@ -22,7 +22,7 @@ import { MODE_NORMAL } from "@/utils/constants";
 import {
   addMemoData,
   removeMemoData,
-  checkMemoClear,
+  checkAndChangeMemoClear,
   setMemoPosition,
 } from "@/utils/memo";
 // import { checkAndChangeMode } from "@/utils/mode";
@@ -59,7 +59,7 @@ export default {
     },
     clearMemo(memoIdx) {
       try {
-        checkMemoClear(this.memoList, memoIdx);
+        checkAndChangeMemoClear(this.memoList, memoIdx);
       } catch (error) {
         console.log(error.message);
       }
