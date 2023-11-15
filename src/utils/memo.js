@@ -31,29 +31,38 @@ export function removeMemoData(state, memoList, memoIdx) {
     // clear memoPositionList
     state.memoPositionList[memoIdx] = 0;
 
-    // find memoList index and remove
-    const memoListIndex = memoList.findIndex(
-      (memo) => memo.position === memoIdx
-    );
+    const memoListIndex = findArrayIndex(memoList, memoIdx);
     memoList.splice(memoListIndex, 1);
   }
 }
 
 export function checkAndChangeMemoClear(memoList, memoIdx) {
-  if (memoList[memoIdx].clear) {
-    memoList[memoIdx].clear = false;
+  const memoListIndex = findArrayIndex(memoList, memoIdx);
+
+  if (memoList[memoListIndex].clear) {
+    memoList[memoListIndex].clear = false;
   } else {
-    memoList[memoIdx].clear = true;
+    memoList[memoListIndex].clear = true;
   }
 }
 
 export function moveMemoData() {}
 
 export function setMemoPosition(state) {
-  const index = state.memoPositionList.findIndex((pos) => pos === 0);
-  if (index === -1) {
-    throw new Error("배치할 수 있는 위치가 없습니다.");
+  const positionIndex = findArrayIndex(state.memoPositionList, 0);
+  state.memoPositionList[positionIndex] = 1;
+  return positionIndex;
+}
+
+function findArrayIndex(array, index) {
+  let arrayIndex = 0;
+  if (array[0].position !== undefined) {
+    arrayIndex = array.findIndex((element) => element.position === index);
+  } else {
+    arrayIndex = array.findIndex((element) => element === index);
   }
-  state.memoPositionList[index] = 1;
-  return index;
+  if (arrayIndex === -1) {
+    throw new Error("위치를 찾을 수가 없습니다.");
+  }
+  return arrayIndex;
 }
