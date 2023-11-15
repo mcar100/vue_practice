@@ -3,7 +3,7 @@
 
 .line-container {
   position: relative;
-  @include mix.box-style(50px, 50px);
+  @include mix.box-style(50px, 50px, none);
   .nail {
     @include mix.position($l: 50%);
     transform: translate(-50%, 0);
@@ -226,7 +226,7 @@
 // input style
 .input-container {
   @include mix.flexbox();
-  @include mix.box-style(600px, 20%);
+  @include mix.box-style(600px, 20%, none);
   & > form {
     position: relative;
   }
