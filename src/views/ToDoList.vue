@@ -5,6 +5,7 @@
     <div class="line"></div>
   </div>
   <div class="board-container">
+    <MemoPositionLayout :state="state" />
     <div class="memo-container">
       <MemoList
         :memoList="memoList"
@@ -18,19 +19,22 @@
 <script>
 import MemoList from "@/components/todolist/MemoList";
 import InputContainer from "@/components/todolist/Input";
-import { MODE_NORMAL } from "@/utils/constants";
+import MemoPositionLayout from "@/components/todolist/MemoPositionLayout";
+import { MODE_CREATING, MODE_NORMAL } from "@/utils/constants";
 import {
   addMemoData,
   removeMemoData,
   checkAndChangeMemoClear,
   setMemoPosition,
 } from "@/utils/memo";
-// import { checkAndChangeMode } from "@/utils/mode";
+import { checkAndChangeMode } from "@/utils/mode";
+
 export default {
   name: "ToDoListPage",
   components: {
     MemoList,
     InputContainer,
+    MemoPositionLayout,
   },
   data() {
     return {
@@ -44,8 +48,10 @@ export default {
   methods: {
     addMemo(memoData) {
       try {
+        checkAndChangeMode(this.state, MODE_CREATING);
         const position = setMemoPosition(this.state);
         addMemoData(this.memoList, memoData, position);
+        // checkAndChangeMode(this.state, MODE_NORMAL);
       } catch (error) {
         console.log(error.message);
       }

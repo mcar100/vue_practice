@@ -28,6 +28,7 @@
 }
 
 .board-container {
+  position: relative;
   @include mix.flexbox(column);
   @include mix.box-style(600px, 400px, c.$bright-wood);
   @include mix.border(12px, groove, c.$dark-wood);
@@ -187,6 +188,32 @@
 
 .grid-pos7 {
   @include mix.grid-position(2, 4);
+}
+
+// position-layout style
+.position-bg-container {
+  position: absolute;
+  @include mix.box-style(98%, 98%, c.$black);
+  @include mix.gridbox($gtr: 50% 50%, $gtc: 25% 25% 25% 25%, $g: 5px);
+  opacity: 0.5;
+
+  .position-memo-container {
+    @include mix.flexbox();
+    @include mix.box-style(80px, 90px, c.$paper);
+    @include mix.grid-self();
+    z-index: 2;
+    transform: rotate(0deg) scale(1.25);
+
+    .position-add-button {
+      @include mix.box-style(78px, 88px, c.$black);
+      @include mix.font-style(13px, $fc: c.$white);
+      border-radius: 10%;
+      cursor: pointer;
+      &:hover {
+        opacity: 90%;
+      }
+    }
+  }
 }
 
 // input style
