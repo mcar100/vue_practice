@@ -20,7 +20,7 @@
 import MemoList from "@/components/todolist/MemoList";
 import InputContainer from "@/components/todolist/Input";
 import MemoPositionLayout from "@/components/todolist/MemoPositionLayout";
-import { MODE_CREATING, MODE_NORMAL } from "@/utils/constants";
+import { MEMO_MAXLENGTH, MODE_CREATING, MODE_NORMAL } from "@/utils/constants";
 import {
   addMemoData,
   removeMemoData,
@@ -49,6 +49,10 @@ export default {
   methods: {
     createMemo(memoData) {
       try {
+        if (this.memoList.length === MEMO_MAXLENGTH) {
+          throw new Error("메모가 꽉찼습니다.");
+        }
+
         if (checkMode(this.state.currentMode, MODE_NORMAL)) {
           checkAndChangeMode(this.state, MODE_CREATING);
           this.memoDataTemp = memoData;
