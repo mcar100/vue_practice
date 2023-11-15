@@ -1,0 +1,47 @@
+@keyframes scaleIn {
+  from {
+    transform: scale(2.5);
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    transform: rotate(0deg) scale(1.25) translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg) scale(1.25) translateY(0);
+    opacity: 1;
+  }
+}
+
+.memo-move-enter-active {
+  animation: fadeIn 0.5s;
+
+  & .memo-pin {
+    opacity: 0;
+    animation: scaleIn 0.8s;
+  }
+}
+.memo-move-leave-active {
+  animation: fadeIn 0.8s reverse;
+  & .memo-pin {
+    opacity: 0;
+    animation: scaleOut 0.8s;
+  }
+}

@@ -9,6 +9,7 @@
     <div class="memo-container">
       <MemoList
         :memoList="memoList"
+        @move-memo="moveMemo"
         @remove-memo="removeMemo"
         @clear-memo="clearMemo"
       />
@@ -72,6 +73,7 @@ export default {
         console.log(error.message);
       }
     },
+    moveMemo() {},
     removeMemo(memoIdx) {
       try {
         if (checkMode(this.state.currentMode, MODE_NORMAL)) {
