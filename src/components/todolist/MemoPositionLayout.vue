@@ -1,5 +1,6 @@
 <template>
   <div class="position-bg-container" v-if="state.currentMode === createMode">
+    <span class="position-span">배치할 곳을 선택해 주세요.</span>
     <div
       class="position-memo-container"
       v-for="(n, idx) in memoMaxLength"
@@ -8,6 +9,7 @@
       <button
         class="position-add-button"
         v-if="state.memoPositionList[idx] === 0"
+        @click="handlePositionClick(idx)"
       >
         +
       </button>
@@ -28,7 +30,11 @@ export default {
       moveMode: MODE_MOVING,
     };
   },
-  methods: {},
+  methods: {
+    handlePositionClick(idx) {
+      this.$emit("add-memo", idx);
+    },
+  },
 };
 </script>
 <style lang="scss"></style>

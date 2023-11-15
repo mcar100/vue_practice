@@ -1,5 +1,13 @@
 import { MODE_NORMAL, MODE_CREATING, MODE_MOVING } from "./constants";
 
+export function checkMode(currentMode, mode) {
+  if (currentMode === mode) {
+    return true;
+  } else {
+    throw new Error("현재 상태에서는 수행할 수 없습니다.");
+  }
+}
+
 export function checkAndChangeMode(state, mode) {
   if (mode === MODE_NORMAL) {
     changeToNormalMode(state);

@@ -1,6 +1,7 @@
 <template>
   <div class="input-container">
     <form>
+      <div class="inactive" v-if="this.mode !== normalMode"></div>
       <input
         type="text"
         v-model="input"
@@ -22,13 +23,18 @@
 <script>
 import { changeDateForm, checkInputData } from "@/utils/input";
 import { createMemoData } from "@/utils/memo";
+import { MODE_NORMAL } from "@/utils/constants";
 
 export default {
   name: "InputContainer",
+  props: {
+    mode: Number,
+  },
   data() {
     return {
       input: "",
       date: "",
+      normalMode: MODE_NORMAL,
     };
   },
   methods: {
@@ -46,7 +52,7 @@ export default {
         const memoData = createMemoData(this.input, memoDate);
         this.input = "";
         this.date = "";
-        this.$emit("add-memo", memoData);
+        this.$emit("create-memo", memoData);
       } catch (error) {
         console.log(error.message);
       }

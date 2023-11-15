@@ -216,10 +216,21 @@
   }
 }
 
+.position-span {
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  color: c.$white;
+}
+
 // input style
 .input-container {
   @include mix.flexbox();
   @include mix.box-style(600px, 20%);
+  & > form {
+    position: relative;
+  }
+
   & > form > input {
     @include mix.box-style(400px, 50px);
     @include mix.box-color(c.$bright-wood, c.$black);
@@ -241,6 +252,13 @@
     &:hover {
       opacity: 80%;
     }
+  }
+
+  & > form > .inactive {
+    position: absolute;
+    @include mix.box-style(100%, 100%, c.$black);
+    opacity: 0.5;
+    z-index: 3;
   }
 
   // @include mix.respond-to("small") {

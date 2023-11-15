@@ -5,7 +5,7 @@
     <div class="line"></div>
   </div>
   <div class="board-container">
-    <MemoPositionLayout :state="state" />
+    <MemoPositionLayout :state="state" @add-memo="addMemo" />
     <div class="memo-container">
       <MemoList
         :memoList="memoList"
@@ -14,7 +14,7 @@
       />
     </div>
   </div>
-  <InputContainer @add-memo="addMemo" />
+  <InputContainer :mode="state.currentMode" @create-memo="createMemo" />
 </template>
 <script>
 import MemoList from "@/components/todolist/MemoList";
@@ -25,9 +25,9 @@ import {
   addMemoData,
   removeMemoData,
   checkAndChangeMemoClear,
-  setMemoPosition,
 } from "@/utils/memo";
-import { checkAndChangeMode } from "@/utils/mode";
+import { setMemoPosition } from "@/utils/position";
+import { checkMode, checkAndChangeMode } from "@/utils/mode";
 
 export default {
   name: "ToDoListPage",
@@ -43,29 +43,45 @@ export default {
         currentMode: MODE_NORMAL,
       },
       memoList: [],
+      memoDataTemp: {},
     };
   },
   methods: {
-    addMemo(memoData) {
+    createMemo(memoData) {
       try {
-        checkAndChangeMode(this.state, MODE_CREATING);
-        const position = setMemoPosition(this.state);
-        addMemoData(this.memoList, memoData, position);
-        // checkAndChangeMode(this.state, MODE_NORMAL);
+        if (checkMode(this.state.currentMode, MODE_NORMAL)) {
+          checkAndChangeMode(this.state, MODE_CREATING);
+          this.memoDataTemp = memoData;
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    },
+    addMemo(positionIndex) {
+      try {
+        if (checkMode(this.state.currentMode, MODE_CREATING)) {
+          setMemoPosition(this.state, positionIndex);
+          addMemoData(this.memoList, this.memoDataTemp, positionIndex);
+          checkAndChangeMode(this.state, MODE_NORMAL);
+        }
       } catch (error) {
         console.log(error.message);
       }
     },
     removeMemo(memoIdx) {
       try {
-        removeMemoData(this.state, this.memoList, memoIdx);
+        if (checkMode(this.state.currentMode, MODE_NORMAL)) {
+          removeMemoData(this.state, this.memoList, memoIdx);
+        }
       } catch (error) {
         console.log(error.message);
       }
     },
     clearMemo(memoIdx) {
       try {
-        checkAndChangeMemoClear(this.memoList, memoIdx);
+        if (checkMode(this.state.currentMode, MODE_NORMAL)) {
+          checkAndChangeMemoClear(this.memoList, memoIdx);
+        }
       } catch (error) {
         console.log(error.message);
       }
