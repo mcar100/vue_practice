@@ -36,7 +36,11 @@
 
   .memo-container {
     @include mix.box-style(98%, 98%, c.$bright-wood);
-    @include mix.gridbox($gtr: 50% 50%, $gtc: 25% 25% 25% 25%, $g: 5px);
+
+    & > div {
+      @include mix.box-style(100%, 100%, none);
+      @include mix.gridbox($gtr: 50% 50%, $gtc: 25% 25% 25% 25%, $g: 5px);
+    }
 
     // @include mix.respond-to("small") {
     //   @include mix.box-style(380px, 280px);
@@ -227,26 +231,33 @@
 .input-container {
   @include mix.flexbox();
   @include mix.box-style(600px, 20%, none);
+  padding-top: 2px;
+
   & > form {
-    position: relative;
+    @include mix.position(relative);
+    @include mix.box-style(555px, 53px, c.$dark-line);
+    @include mix.border(1px, solid, c.$dark-line, $r: 3px);
+    box-sizing: border-box;
+    @include mix.flexbox();
   }
 
   & > form > input {
-    @include mix.box-style(400px, 50px);
-    @include mix.box-color(c.$bright-wood, c.$black);
+    @include mix.box-style(350px, 50px, c.$bright-wood);
+    @include mix.border($c: c.$dark-line);
     @include mix.font-style(15px, $fc: c.$dark-line);
-    @include mix.border($c: c.$dark-wood);
     @include mix.border-radius($tl: 3px, $bl: 3px);
     text-align: center;
 
     // @include mix.respond-to("small") {
     //   @include mix.font-style(12px, $fc: c.$dark-line);
     // }
+    &:nth-child(2) {
+      @include mix.border-radius();
+    }
   }
+
   & > form > button {
-    @include mix.box-style(80px, 50px, c.$background);
-    @include mix.border($c: c.$background);
-    @include mix.border-radius($tr: 3px, $br: 3px);
+    @include mix.box-style(80px, 50px, c.$dark-line);
     @include mix.font-style(13px, $fc: c.$white);
 
     &:hover {

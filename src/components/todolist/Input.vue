@@ -6,14 +6,14 @@
         type="text"
         v-model="input"
         maxlength="30"
-        placeholder="일정의 내용을 입력해주세요 (30자 이내)"
+        placeholder="일정을 입력해주세요 (30자 이내)"
         @input="handleInputChange"
       />
       <input
         type="date"
         class="calendar"
         v-model="date"
-        placeholder="마감일을 입력해주세요."
+        :placeholder="this.customDate"
         @input="handleDateChange"
       />
       <button type="submit" @click="handleSubmit">등록</button>
@@ -34,6 +34,7 @@ export default {
     return {
       input: "",
       date: "",
+      customDate: changeDateForm(new Date()),
       normalMode: MODE_NORMAL,
     };
   },
@@ -43,19 +44,23 @@ export default {
     },
     handleDateChange(event) {
       this.date = event.target.value;
+      this.customDate = changeDateForm(this.date);
     },
     handleSubmit(event) {
       event.preventDefault();
       try {
-        checkInputData(this.input, this.date);
-        const memoDate = changeDateForm(this.date);
-        const memoData = createMemoData(this.input, memoDate);
-        this.input = "";
-        this.date = "";
+        checkInputData(this.input, this.customDate);
+        const memoData = createMemoData(this.input, this.customDate);
+        this.clearInputData();
         this.$emit("create-memo", memoData);
       } catch (error) {
         console.log(error.message);
       }
+    },
+    clearInputData() {
+      this.input = "";
+      this.date = "";
+      this.customDate = changeDateForm(new Date());
     },
   },
 };

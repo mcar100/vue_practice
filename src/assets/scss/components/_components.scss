@@ -62,31 +62,26 @@
   margin: 15px 0;
 }
 
-// calendar
+// date style
 input[type="date"] {
-  max-width: 50px;
-  position: relative;
+  max-width: 120px;
+  @include mix.position(relative);
 }
 
-// calendar를 클릭하여 달력과 시간을 설정하는 레이아웃이 나오게 하는 선택자
+// date - icon custom style
 input[type="date"]::-webkit-calendar-picker-indicator {
-  position: absolute;
+  @include mix.box-style(25px, 20px, transparent);
+  @include mix.position(absolute, $t: 23%, $l: 73%);
   background-image: url(@/assets/images/calendar-silhouette.png);
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background: transparent;
-  color: transparent;
   cursor: pointer;
+  opacity: 0.6;
 }
 
+// date - placeholder style
 input[type="date"]::before {
   content: attr(placeholder);
-  width: 100%;
-  height: 100%;
-}
-
-input[type="date"]:valid::before {
-  display: none;
+  @include mix.flexbox();
+  @include mix.box-style(100%, 100%, transparent);
+  @include mix.font-style(13px, bold, c.$dark-line);
+  padding-right: 20px;
 }
