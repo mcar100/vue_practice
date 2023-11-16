@@ -37,7 +37,7 @@
   .memo-container {
     @include mix.box-style(98%, 98%, c.$bright-wood);
 
-    & > div {
+    & > .memo-list {
       @include mix.box-style(100%, 100%, none);
       @include mix.gridbox($gtr: 50% 50%, $gtc: 25% 25% 25% 25%, $g: 5px);
     }
@@ -73,6 +73,16 @@
       cursor: pointer;
       &:hover {
         transform: rotate(0deg) scale(1.25);
+      }
+    }
+
+    .memo-move {
+      @include mix.box-style(20px, 10px, none);
+      @include mix.position($t: 5%, $l: 75%);
+      @include mix.font-style(7px);
+      cursor: pointer;
+      &:hover {
+        @include mix.font-style(8px, $fc: c.$white);
       }
     }
   }
@@ -200,12 +210,12 @@
   @include mix.box-style(98%, 98%, c.$black);
   @include mix.gridbox($gtr: 50% 50%, $gtc: 25% 25% 25% 25%, $g: 5px);
   opacity: 0.5;
+  z-index: 5;
 
   .position-memo-container {
     @include mix.flexbox();
     @include mix.box-style(80px, 90px, c.$paper);
     @include mix.grid-self();
-    z-index: 2;
     transform: rotate(0deg) scale(1.25);
 
     .position-add-button {
@@ -275,4 +285,10 @@
   // @include mix.respond-to("small") {
   //   @include mix.box-size(300px, 300px);
   // }
+}
+
+#memo-moving-container {
+  position: absolute;
+  z-index: 3;
+  cursor: none;
 }

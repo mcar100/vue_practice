@@ -5,13 +5,18 @@
     <div class="line"></div>
   </div>
   <div class="board-container">
-    <MemoPositionLayout :state="state" @add-memo="addMemo" />
+    <MemoPositionLayout
+      :state="state"
+      @add-memo="addMemo"
+      @finish-moving-memo="finishMovingMemo"
+    />
     <div class="memo-container">
       <MemoList
         :memoList="memoList"
-        @move-memo="moveMemo"
         @remove-memo="removeMemo"
         @clear-memo="clearMemo"
+        @start-moving-memo="startMovingMemo"
+        @cancel-moving-memo="cancelMovingMemo"
       />
     </div>
   </div>
@@ -21,7 +26,12 @@
 import MemoList from "@/components/todolist/MemoList";
 import InputContainer from "@/components/todolist/Input";
 import MemoPositionLayout from "@/components/todolist/MemoPositionLayout";
-import { MEMO_MAXLENGTH, MODE_CREATING, MODE_NORMAL } from "@/utils/constants";
+import {
+  MEMO_MAXLENGTH,
+  MODE_CREATING,
+  MODE_MOVING,
+  MODE_NORMAL,
+} from "@/utils/constants";
 import {
   addMemoData,
   removeMemoData,
@@ -67,13 +77,13 @@ export default {
         if (checkMode(this.state.currentMode, MODE_CREATING)) {
           setMemoPosition(this.state, positionIndex);
           addMemoData(this.memoList, this.memoDataTemp, positionIndex);
+          this.memoDataTemp = {};
           checkAndChangeMode(this.state, MODE_NORMAL);
         }
       } catch (error) {
         console.log(error.message);
       }
     },
-    moveMemo() {},
     removeMemo(memoIdx) {
       try {
         if (checkMode(this.state.currentMode, MODE_NORMAL)) {
@@ -87,6 +97,38 @@ export default {
       try {
         if (checkMode(this.state.currentMode, MODE_NORMAL)) {
           checkAndChangeMemoClear(this.memoList, memoIdx);
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    },
+    startMovingMemo(movingMemoData) {
+      try {
+        if (checkMode(this.state.currentMode, MODE_NORMAL)) {
+          this.memoDataTemp = movingMemoData;
+          checkAndChangeMode(this.state, MODE_MOVING);
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    },
+    cancelMovingMemo() {
+      try {
+        if (checkMode(this.state.currentMode, MODE_MOVING)) {
+          checkAndChangeMode(this.state, MODE_NORMAL);
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    },
+    finishMovingMemo(positionIndex) {
+      try {
+        if (checkMode(this.state.currentMode, MODE_MOVING)) {
+          removeMemoData(this.state, this.memoList, this.memoDataTemp.position);
+          setMemoPosition(this.state, positionIndex);
+          addMemoData(this.memoList, this.memoDataTemp, positionIndex);
+          this.memoDataTemp = {};
+          checkAndChangeMode(this.state, MODE_NORMAL);
         }
       } catch (error) {
         console.log(error.message);
