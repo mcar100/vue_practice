@@ -4,18 +4,21 @@ $black: #000;
 $basic: #fff;
 $background: darkslateblue;
 $placeholder: #758078;
+$shadow: rgba(0, 0, 0, 0.4);
 
-/* theme  */
+/* situation  */
+$error: #d32f2f;
+$clear: #758ec6;
+$modal-bg: rgba(0, 0, 0, 0.5);
+
+/* todolist  */
+// page-theme
 $bright-wood: #eabd7a;
 $dark-wood: #b6814d;
 $bright-line: #8e5327;
 $dark-line: #624529;
 
-/* situation  */
-$error: #d32f2f;
-$clear: #758ec6;
-
-/* memo-style */
+// memo-style
 $paper: #ececec;
 $paper2: #f8ea85;
 $paper3: #baf3f7;

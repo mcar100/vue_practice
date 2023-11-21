@@ -5,13 +5,7 @@
 .move-top-btn {
   @include mix.box-style(40px, 40px, c.$white);
   @include mix.font-style(13px, $fc: c.$background);
-  border: none;
-  border-radius: 100%;
-  cursor: pointer;
-
-  &:hover {
-    opacity: 90%;
-  }
+  @include mix.circle-button();
 }
 
 // images
@@ -23,21 +17,16 @@
 /* modal */
 //product-modal
 .black-bg {
-  width: 100%;
-  height: 100%;
-  top: 0;
-  background: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  padding: 30px;
+  @include mix.position(fixed);
+  @include mix.box-style(100%, 100%, c.$modal-bg);
+  @include mix.padding(30px);
 }
 
 .white-bg {
-  width: 480px;
-  height: 400px;
-  background: white;
+  @include mix.box-style(600px, 400px, c.$white);
+  @include mix.padding(20px);
+  @include mix.margin($t: 10%, $l: 10%);
   border-radius: 8px;
-  padding: 20px;
-  margin-top: 40px;
 }
 
 .modal-container {
@@ -56,10 +45,9 @@
 
 // product-list
 .item-container {
-  width: 100%;
-  height: 100%;
-  padding: 15px;
-  margin: 15px 0;
+  @include mix.box-style(100%, 100%);
+  @include mix.padding(15px);
+  @include mix.margin(0, 15, 0, 15, 0);
 }
 
 // date style
@@ -83,5 +71,5 @@ input[type="date"]::before {
   @include mix.flexbox();
   @include mix.box-style(100%, 100%, transparent);
   @include mix.font-style(13px, bold, c.$dark-line);
-  padding-right: 20px;
+  @include mix.padding($r: 20px);
 }

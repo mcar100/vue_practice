@@ -19,8 +19,8 @@
       @include mix.flexbox();
 
       .nav-item {
-        padding: 5px;
-        margin-right: 5px;
+        @include mix.padding(5px);
+        @include mix.margin($r: 5px);
         color: c.$white;
       }
     }
