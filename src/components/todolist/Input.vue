@@ -6,7 +6,7 @@
         type="text"
         v-model="input"
         maxlength="30"
-        placeholder="일정을 입력해주세요 (30자 이내)"
+        :placeholder="inputPlaceholder"
         @input="handleInputChange"
       />
       <input
@@ -29,6 +29,7 @@ export default {
   name: "InputContainer",
   props: {
     mode: Number,
+    errorState: Object,
   },
   data() {
     return {
@@ -36,6 +37,7 @@ export default {
       date: "",
       customDate: changeDateForm(new Date()),
       normalMode: MODE_NORMAL,
+      inputPlaceholder: "일정을 입력해주세요 (30자 내)",
     };
   },
   methods: {
@@ -53,8 +55,9 @@ export default {
         const memoData = createMemoData(this.input, this.customDate);
         this.clearInputData();
         this.$emit("create-memo", memoData);
+        this.inputPlaceholder = "일정을 입력해주세요 (30자 내)";
       } catch (error) {
-        console.log(error.message);
+        this.inputPlaceholder = error.message;
       }
     },
     clearInputData() {

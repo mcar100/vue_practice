@@ -33,12 +33,13 @@
 <script>
 import { findArrayIndex } from "@/utils/position";
 import MovingMemo from "./MovingMemo.vue";
+
 export default {
   name: "MemoList",
   props: {
     memoList: Array,
   },
-  emits: ["remove-memo", "clear-memo", "start-moving-memo"],
+  emits: ["remove-memo", "clear-memo", "start-moving-memo", "throw-error"],
   data() {
     return {
       movingMemoData: null,
@@ -58,12 +59,19 @@ export default {
       }
     },
     moveClickHandler(event, memoPosition) {
-      if (memoPosition !== undefined) {
-        const movingMemoIndex = findArrayIndex(this.memoList, memoPosition);
-        this.movingMemoData = this.memoList[movingMemoIndex];
-        this.$emit("start-moving-memo", this.movingMemoData);
-        this.movingMemoEvent = event;
-        this.isDragging = true;
+      try {
+        if (this.memoList.length === 8) {
+          throw new Error("이동할 곳이 없습니다.");
+        }
+        if (memoPosition !== undefined) {
+          const movingMemoIndex = findArrayIndex(this.memoList, memoPosition);
+          this.movingMemoData = this.memoList[movingMemoIndex];
+          this.$emit("start-moving-memo", this.movingMemoData);
+          this.movingMemoEvent = event;
+          this.isDragging = true;
+        }
+      } catch (error) {
+        this.$emit("throw-error", error);
       }
     },
     finishDragging() {

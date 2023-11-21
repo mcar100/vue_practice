@@ -3,7 +3,7 @@ import { findArrayIndex } from "./position";
 
 export function addMemoData(memoList, data, position) {
   if (memoList.length === MEMO_MAXLENGTH) {
-    throw new Error("메모가 꽉찼습니다.");
+    throw new Error("더 이상 배치할 곳이 없습니다.");
   } else {
     data.position = position;
     memoList.push(data);

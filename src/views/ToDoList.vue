@@ -11,11 +11,15 @@
       @finish-moving-memo="finishMovingMemo"
     />
     <div class="memo-container">
+      <div class="memo-error-container" v-if="errorState.isError">
+        {{ errorState.errorMsg }}
+      </div>
       <MemoList
         :memoList="memoList"
         @remove-memo="removeMemo"
         @clear-memo="clearMemo"
         @start-moving-memo="startMovingMemo"
+        @throw-error="throwError"
       />
     </div>
   </div>
@@ -38,6 +42,7 @@ import {
 } from "@/utils/memo";
 import { setMemoPosition } from "@/utils/position";
 import { checkMode, checkAndChangeMode } from "@/utils/mode";
+import { errorHandler } from "@/utils/error";
 
 export default {
   name: "ToDoListPage",
@@ -54,13 +59,17 @@ export default {
       },
       memoList: [],
       memoDataTemp: {},
+      errorState: {
+        isError: false,
+        errorMsg: "",
+      },
     };
   },
   methods: {
     createMemo(memoData) {
       try {
         if (this.memoList.length === MEMO_MAXLENGTH) {
-          throw new Error("메모가 꽉찼습니다.");
+          throw new Error("메모가 이미 꽉 찼습니다.");
         }
 
         if (checkMode(this.state.currentMode, MODE_NORMAL)) {
@@ -68,7 +77,7 @@ export default {
           this.memoDataTemp = memoData;
         }
       } catch (error) {
-        console.log(error.message);
+        errorHandler(this.errorState, error);
       }
     },
     addMemo(positionIndex) {
@@ -80,7 +89,7 @@ export default {
           checkAndChangeMode(this.state, MODE_NORMAL);
         }
       } catch (error) {
-        console.log(error.message);
+        errorHandler(this.errorState, error);
       }
     },
     removeMemo(memoIdx) {
@@ -89,7 +98,7 @@ export default {
           removeMemoData(this.state, this.memoList, memoIdx);
         }
       } catch (error) {
-        console.log(error.message);
+        errorHandler(this.errorState, error);
       }
     },
     clearMemo(memoIdx) {
@@ -98,7 +107,7 @@ export default {
           checkAndChangeMemoClear(this.memoList, memoIdx);
         }
       } catch (error) {
-        console.log(error.message);
+        errorHandler(this.errorState, error);
       }
     },
     startMovingMemo(movingMemoData) {
@@ -108,7 +117,7 @@ export default {
           checkAndChangeMode(this.state, MODE_MOVING);
         }
       } catch (error) {
-        console.log(error.message);
+        errorHandler(this.errorState, error);
       }
     },
     finishMovingMemo(positionIndex) {
@@ -121,8 +130,11 @@ export default {
           checkAndChangeMode(this.state, MODE_NORMAL);
         }
       } catch (error) {
-        console.log(error.message);
+        errorHandler(this.errorState, error);
       }
+    },
+    throwError(error) {
+      errorHandler(this.errorState, error);
     },
   },
 };
