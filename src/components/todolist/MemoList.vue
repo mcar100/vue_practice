@@ -1,27 +1,10 @@
 <template>
-  <div
-    v-if="isDragging"
-    id="memo-moving-container"
-    ref="movingElement"
-    :style="{
-      left: `${movingMemoposition.x}px`,
-      top: `${movingMemoposition.y}px`,
-    }"
-  >
-    <div class="memo" :class="movingMemoData.style">
-      <div class="memo-head">
-        <div class="memo-pin"></div>
-      </div>
-      <div class="memo-body">
-        <span class="memo-date">{{ `due: ${movingMemoData.date}` }}</span>
-        <textarea
-          readonly
-          :value="movingMemoData.contents"
-          :class="{ 'memo--clear': movingMemoData.clear }"
-        ></textarea>
-      </div>
-    </div>
-  </div>
+  <MovingMemo
+    :isDragging="isDragging"
+    :movingMemoData="movingMemoData"
+    :movingMemoEvent="movingMemoEvent"
+    @isDragging-false="finishDragging"
+  />
   <transition-group class="memo-list" name="memo-move" tag="div">
     <div
       class="memo"
@@ -49,23 +32,18 @@
 </template>
 <script>
 import { findArrayIndex } from "@/utils/position";
+import MovingMemo from "./MovingMemo.vue";
 export default {
   name: "MemoList",
   props: {
     memoList: Array,
   },
-  emits: [
-    "remove-memo",
-    "clear-memo",
-    "start-moving-memo",
-    "cancel-moving-memo",
-  ],
+  emits: ["remove-memo", "clear-memo", "start-moving-memo"],
   data() {
     return {
       movingMemoData: null,
       isDragging: false,
-      movingMemoposition: { x: 0, y: 0 },
-      offset: { x: 0, y: 0 },
+      movingMemoEvent: null,
     };
   },
   methods: {
@@ -81,37 +59,20 @@ export default {
     },
     moveClickHandler(event, memoPosition) {
       if (memoPosition !== undefined) {
-        this.isDragging = true;
-        this.startDrag(event);
         const movingMemoIndex = findArrayIndex(this.memoList, memoPosition);
         this.movingMemoData = this.memoList[movingMemoIndex];
         this.$emit("start-moving-memo", this.movingMemoData);
+        this.movingMemoEvent = event;
+        this.isDragging = true;
       }
     },
-    startDrag(e) {
-      const memoDom = document.querySelector(".board-container");
-      this.offset.x = memoDom.getBoundingClientRect().left + 30;
-      this.offset.y = memoDom.getBoundingClientRect().top + 30;
-      this.movingMemoposition.x = e.clientX - this.offset.x;
-      this.movingMemoposition.y = e.clientY - this.offset.y;
-      document.addEventListener("mousemove", this.onMouseMove);
-      document.addEventListener("mouseup", this.onMouseUp);
-    },
-    onMouseMove(e) {
+    finishDragging() {
       if (this.isDragging) {
-        this.movingMemoposition.x = e.clientX - this.offset.x;
-        this.movingMemoposition.y = e.clientY - this.offset.y;
+        this.isDragging = false;
       }
-    },
-    onMouseUp() {
-      document.removeEventListener("mousemove", this.onMouseMove);
-      document.removeEventListener("mouseup", this.onMouseUp);
-      this.movingMemoposition.x = 0;
-      this.movingMemoposition.y = 0;
-      this.isDragging = false;
-      // this.$emit("cancel-moving-memo");
     },
   },
+  components: { MovingMemo },
 };
 </script>
 <style lang="scss"></style>

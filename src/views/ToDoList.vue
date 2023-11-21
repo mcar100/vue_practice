@@ -16,7 +16,6 @@
         @remove-memo="removeMemo"
         @clear-memo="clearMemo"
         @start-moving-memo="startMovingMemo"
-        @cancel-moving-memo="cancelMovingMemo"
       />
     </div>
   </div>
@@ -107,15 +106,6 @@ export default {
         if (checkMode(this.state.currentMode, MODE_NORMAL)) {
           this.memoDataTemp = movingMemoData;
           checkAndChangeMode(this.state, MODE_MOVING);
-        }
-      } catch (error) {
-        console.log(error.message);
-      }
-    },
-    cancelMovingMemo() {
-      try {
-        if (checkMode(this.state.currentMode, MODE_MOVING)) {
-          checkAndChangeMode(this.state, MODE_NORMAL);
         }
       } catch (error) {
         console.log(error.message);
