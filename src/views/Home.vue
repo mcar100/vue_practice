@@ -2,13 +2,9 @@
   <div class="home-container">
     <h2>Project List</h2>
     <ul class="home-project-list">
-      <li>
-        <span>Vue Tutorial:</span>
-        <router-link to="/shop" class="nav-item">이동</router-link>
-      </li>
-      <li>
-        <span>ToDoList Remaster:</span>
-        <router-link to="/todolist" class="nav-item">이동</router-link>
+      <li v-for="(page, idx) in pageList" :key="`page${idx}`">
+        <span>{{ page.pageName }}</span>
+        <router-link :to="page.linkName" class="nav-item">GO</router-link>
       </li>
     </ul>
   </div>
@@ -16,6 +12,14 @@
 <script>
 export default {
   name: "HomePage",
+  data() {
+    return {
+      pageList: [
+        { pageName: "Vue Tutorial", linkName: "/shop" },
+        { pageName: "ToDoList Remaster", linkName: "/todolist" },
+      ],
+    };
+  },
 };
 </script>
 <style lang="scss"></style>

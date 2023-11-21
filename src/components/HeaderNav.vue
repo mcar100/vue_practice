@@ -3,8 +3,7 @@
     <nav class="header-navbar">
       <ul class="nav-menu">
         <router-link to="/home" class="nav-item">Home</router-link>
-        <router-link to="/about" class="nav-item">About</router-link>
-        <router-link to="/shop" class="nav-item">Shop</router-link>
+        <router-link to="/tutorial" class="nav-item">Tutorial</router-link>
         <router-link to="/todolist" class="nav-item">ToDoList</router-link>
       </ul>
     </nav>

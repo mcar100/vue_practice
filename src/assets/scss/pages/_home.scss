@@ -1,0 +1,40 @@
+@use "../abstracts/variables" as c;
+@use "../abstracts/mixins" as mix;
+
+.home-container {
+  @include mix.flexbox(column);
+  @include mix.box-style(280px, 80%, c.$white);
+
+  & > h2 {
+    @include mix.font-style(25px, bold, c.$background);
+  }
+
+  & .home-project-list {
+    @include mix.box-style(80%, 80%, transparent);
+
+    & > li {
+      @include mix.flexbox();
+      @include mix.box-style(220px, 50px, transparent);
+      @include mix.border($r: 3px);
+      @include mix.box-color(c.$background, c.$background);
+      @include mix.font-style(15px, bold, c.$white);
+      @include mix.margin(5px);
+      @include mix.padding(10px);
+      box-sizing: border-box;
+      & > span {
+        @include mix.flexbox($jc: flex-start);
+        @include mix.box-style(80%, 100%, transparent);
+      }
+
+      & > a {
+        @include mix.box-style(30px, 30px, transparent);
+        @include mix.box-color(c.$white, c.$white);
+        @include mix.font-style(14px, bold, c.$background);
+        @include mix.circle-button();
+        @include mix.padding(3px);
+        @include mix.font-center();
+        box-sizing: border-box;
+      }
+    }
+  }
+}

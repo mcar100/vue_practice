@@ -10,6 +10,7 @@
 
 @mixin margin($a: 0px, $t: 0px, $b: 0px, $l: 0px, $r: 0px) {
   @if ($a>0px) {
+    margin: $a;
   } @else {
     margin-top: $t;
     margin-bottom: $b;
@@ -35,6 +36,11 @@
   background-color: $bgc;
 }
 
+@mixin min-box($mw: 50px, $mh: 50px) {
+  min-width: $mw;
+  min-height: $mh;
+}
+
 @mixin box-color($bgc: #303030, $rc: #fff) {
   background-color: $bgc;
   border-color: $rc;
@@ -52,8 +58,14 @@
   color: $fc;
 }
 
+@mixin font-center() {
+  text-align: center;
+  line-height: 5px;
+  @include flexbox();
+}
+
 /* border */
-@mixin border($w: 1px, $s: solid, $c: c.$reverse, $r: 1px) {
+@mixin border($w: 1px, $s: solid, $c: c.$black, $r: 1px) {
   border: $w $s $c;
   border-radius: $r;
 }
