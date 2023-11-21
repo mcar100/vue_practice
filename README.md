@@ -1,24 +1,21 @@
-# vue_practice
+# 프로젝트: vue_project_list
 
-## Project setup
-```
-npm install
-```
+- todolist 프로젝트 리마스터
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### 프로젝트 설명
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Notion: [프로젝트 설명 이동](https://www.notion.so/Project-To-Do-List-Vue-a662e17057db45408d98bf908cadc28a)
 
-### Lints and fixes files
-```
-npm run lint
-```
+### Netlify 배포
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e3c89e31-7dc8-45e8-bdb7-540a78b4ee19/deploy-status)](https://app.netlify.com/sites/seob-vue-project-8304b0/deploys)
+
+Netlify: [배포사이트 이동](https://seob-vue-project-8304b0.netlify.app/#/todolist)
+
+### 기술 스택
+
+- HTML/CSS/JS
+- Vue.js (+ vue-router)
+- SCSS
+
+### [Commit 컨벤션](https://velog.io/@shin6403/Git-git-%EC%BB%A4%EB%B0%8B-%EC%BB%A8%EB%B2%A4%EC%85%98-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0)
